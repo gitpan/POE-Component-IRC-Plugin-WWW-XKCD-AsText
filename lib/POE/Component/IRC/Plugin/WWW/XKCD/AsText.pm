@@ -3,7 +3,7 @@ package POE::Component::IRC::Plugin::WWW::XKCD::AsText;
 use warnings;
 use strict;
 
-our $VERSION = '0.001';
+our $VERSION = '0.002';
 
 use Carp;
 use POE qw(Component::WWW::XKCD::AsText);
@@ -179,8 +179,8 @@ sub _xkcd_done {
     }
                          
     $self->{irc}->_send_event( $self->{response_event} => {
-            result => $in_ref->{text},
-            term   => $in_ref->{term},
+            text => $in_ref->{text},
+            id   => $in_ref->{id},
             map { $_ => $in_ref->{"_$_"} }
                 qw( who channel  message  type ),
         }
